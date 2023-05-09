@@ -1,26 +1,51 @@
-import React from "react";
+import React, { useState } from 'react'
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
-//create your first component
 const Home = () => {
+	
+	const [allTasks, setAllTasks] = useState([])
+
+	const [task,setTask] = useState("")
+
+    const handleChange = (event) => {
+
+        setTask(event.target.value)
+    }
+
+	const handleSubmit = (event) => {
+		event.preventDefault()
+	}
+
+	const handleAddTask = (event) => {
+		if (event.key == "Enter") {
+			setAllTasks([...allTasks,task])
+			setTask("")
+		}
+    }
+
+	const handleDeleteTask = (id) => {
+		const newTask = allTasks.filter((_,index)=> index != id)
+		setAllTasks(newTask)
+	}
+
 	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+		<>
+            <div className='container'>
+				<div className='row'>
+					<div className='col-12 col-md-7'>
+						<h2>TODOS</h2>
+						<form onKeyDown={handleAddTask} onSubmit={handleSubmit}>
+							<input value={task} type='text' placeholder='ingrese tarea' className='form-control' name='task' onChange={handleChange}/>
+						</form>
+						{
+							allTasks.map((item, index) => {
+								return (<p onClick={() =>handleDeleteTask(index)} key={index}>{item} </p>)
+							})
+						}
+					</div>
+				</div>
+			</div>
+		</>
+	)
 };
 
 export default Home;
