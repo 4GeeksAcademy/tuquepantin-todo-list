@@ -32,7 +32,7 @@ const Home = () => {
             <div className='container'>
 				<div className='row'>
 					<div className='col-12 col-md-7'>
-						<h1>Todos</h1>
+						<h1>ToDos</h1>
 			            <div className='contenedor'>
 							<form onKeyDown={handleAddTask} onSubmit={handleSubmit}>
 						        <input value={task} 
