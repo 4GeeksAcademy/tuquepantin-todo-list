@@ -11,12 +11,30 @@ body{
 
 .input{
     border: 0px;
+    margin-bottom: 3px;
+
 }
 
 p{
     margin-left: 12px;
+    margin-right: 12px;
+    border-top: 1px solid black;
+    padding-top: 6px;
+    margin-bottom: 7px;
+    opacity: .5;
+    
 }
 
 h1{
     text-align: center;
+}
+
+.task{
+    margin-left: 12px;
+    margin-right: 12px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    opacity: .5;
+    border-top: 1px solid black;
+    padding-top: 10px;
 }
