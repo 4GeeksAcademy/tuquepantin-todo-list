@@ -44,7 +44,7 @@ const Home = () => {
 					        </form>
 							{
 							    allTasks.map((item, index) => {
-							    return (<p onClick={() =>handleDeleteTask(index)} key={index}>{item} </p>)
+							    return (<p onClick={() =>handleDeleteTask(index)} key={index}>{item}</p>)
 							    })
 					        }
 							<div className='task'>{allTasks.length} item left</div>
