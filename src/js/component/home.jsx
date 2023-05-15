@@ -35,11 +35,36 @@ const Home = () => {
 			let response = await fetch(`${URLBASE}`)
 			let data = await response.json()
 
-			if(response.ok){
-				setAllTasks(data)
+			if(response.status == 404){
+				console.log("debes crear usuario")
+				createUser()
 			}else{
-				console.log("error al consultar")
+				setAllTasks(data)
 			}
+
+
+
+		}catch(err){
+			console.log(err)
+		}
+
+	}
+
+	const createUser = async () => {
+		try{
+			let response = await fetch(`${URLBASE}`, {
+				method:'POST',
+				headers:{
+					"Content-Type": "application/json"
+				},
+				body:JSON.stringify([])
+			})
+
+			if(response.ok){
+				getTask()
+			}
+
+			console.log(response)
 
 		}catch(err){
 			console.log(err)
