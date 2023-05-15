@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
+const URLBASE = "https://assets.breatheco.de/apis/fake/todos/user/victorpantin"
 
 const Home = () => {
 	
@@ -27,6 +29,28 @@ const Home = () => {
 		setAllTasks(newTask)
 	}
 
+
+	const getTask = async () => {
+		try{
+			let response = await fetch(`${URLBASE}`)
+			let data = await response.json()
+
+			if(response.ok){
+				setAllTasks(data)
+			}else{
+				console.log("error al consultar")
+			}
+
+		}catch(err){
+			console.log(err)
+		}
+
+	}
+
+	useEffect(() => {
+		getTask()
+	}, [])
+
 	return (
 		<>
             <div className='container'>
@@ -44,7 +68,7 @@ const Home = () => {
 					        </form>
 							{
 							    allTasks.map((item, index) => {
-							    return (<p onClick={() =>handleDeleteTask(index)} key={index}>{item}</p>)
+							    return (<p onClick={() =>handleDeleteTask(index)} key={index}>{item.label}</p>)
 							    })
 					        }
 							<div className='task'>{allTasks.length} item left</div>
